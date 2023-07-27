@@ -21,9 +21,7 @@ def index_view():
         )
         db.session.add(url)
         db.session.commit()
-        flash(f'Ваша новая ссылка готова: '
-              f'<a href="{request.base_url}{custom_id}">'
-              f'{request.base_url}{custom_id}</a>')
+        flash(f'{request.base_url}{custom_id}', 'link-messages')
     return render_template('index.html', form=form)
 
 

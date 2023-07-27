@@ -43,12 +43,12 @@
           </div>
           <div class="col-sm">
             <h5 class="text-center">
-              {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                  {% for message in messages %}
-                    {{ message|safe }}
-                  {% endfor %}
-                {% endif %}
+              {% with messages = get_flashed_messages(category_filter=["link-messages"]) %}
+              {% if messages %}
+                {% for message in messages %}
+                  Ваша новая ссылка готова: <a href="{{ message }}">{{ message }}</a>
+                {% endfor %}
+              {% endif %}
               {% endwith %}
             </h5>
           </div>
