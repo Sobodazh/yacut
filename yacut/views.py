@@ -10,7 +10,7 @@ def index_view():
     form = СutForm()
     if form.validate_on_submit():
         custom_id = form.custom_id.data
-        if not custom_id:
+        if custom_id is None:
             custom_id = get_unique_short_id()
         elif URLMap.query.filter_by(short=custom_id).first():
             form.custom_id.errors = [f'Имя {custom_id} уже занято!']

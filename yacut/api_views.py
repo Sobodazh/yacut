@@ -33,7 +33,7 @@ def short_url_api():
         data['custom_id'] = get_unique_short_id()
     elif URLMap.query.filter_by(short=data['custom_id']).first():
         raise InvalidAPIUsage(f'Имя "{data["custom_id"]}" уже занято.')
-    elif not match(PATTERN_SHORT, data['custom_id']):
+    if not match(PATTERN_SHORT, data['custom_id']):
         raise InvalidAPIUsage('Указано недопустимое имя для короткой ссылки')
     url = URLMap()
     url.from_dict(data)

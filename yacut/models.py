@@ -6,6 +6,8 @@ from flask import url_for
 
 from yacut import db
 
+COUNT_OF_RANDOM = 6
+
 
 class URLMap(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -27,6 +29,6 @@ class URLMap(db.Model):
 
 def get_unique_short_id():
     while True:
-        short_id = ''.join(choices(ascii_letters + digits, k=6))
+        short_id = ''.join(choices(ascii_letters + digits, k=COUNT_OF_RANDOM))
         if not URLMap.query.filter_by(short=short_id).first():
             return short_id
